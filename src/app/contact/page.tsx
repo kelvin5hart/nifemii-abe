@@ -21,7 +21,7 @@ const contactInfo = [
       </svg>
     ),
     title: "Email Us",
-    details: ["hello@nifemiiabe.com"],
+    details: ["nifemiiabe@gmail.com"],
   },
   {
     icon: (
@@ -30,7 +30,7 @@ const contactInfo = [
       </svg>
     ),
     title: "Call Us",
-    details: ["+234 800 000 0000"],
+    details: ["+234 706 760 1656"],
   },
   {
     icon: (
@@ -39,7 +39,34 @@ const contactInfo = [
       </svg>
     ),
     title: "WhatsApp",
-    details: ["+234 800 000 0000"],
+    details: ["+234 706 760 1656"],
+  },
+];
+
+const faqs = [
+  {
+    question: "How long does a custom outfit take to make?",
+    answer: "Custom outfits typically take 2-4 weeks depending on the complexity of the design. For wedding attire, we recommend booking at least 6-8 weeks in advance to allow for multiple fittings and adjustments.",
+  },
+  {
+    question: "What is your payment process?",
+    answer: "We require a 50% deposit to begin work on your custom piece. The remaining balance is due before final delivery. We accept bank transfers and cash payments.",
+  },
+  {
+    question: "Do you ship internationally?",
+    answer: "Yes! We ship worldwide. International clients can have virtual consultations via video call, and we&apos;ll guide you through the measurement process. Shipping costs vary by destination.",
+  },
+  {
+    question: "Can I provide my own fabric?",
+    answer: "Absolutely! You can bring your own fabric, or we can help source premium materials for you. We have access to a wide range of fabrics including aso-oke, lace, and imported materials.",
+  },
+  {
+    question: "What if the outfit doesn&apos;t fit perfectly?",
+    answer: "We include up to two free alterations with every custom order. We conduct multiple fittings throughout the process to ensure a perfect fit before final delivery.",
+  },
+  {
+    question: "Do you make outfits for men?",
+    answer: "Yes, we create custom pieces for both men and women. Our men&apos;s collection includes agbada, senator styles, suits, and traditional attire for all occasions.",
   },
 ];
 
@@ -275,7 +302,7 @@ export default function Contact() {
               </svg>
             </a>
             <a
-              href="https://wa.me/2348000000000"
+              href="https://wa.me/2347067601656"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 border border-[#2a2a2a] rounded-full flex items-center justify-center text-[#888888] hover:border-[#c9a962] hover:text-[#c9a962] transition-all duration-300"
@@ -289,6 +316,47 @@ export default function Contact() {
           <p className="text-[#888888] text-sm font-[family-name:var(--font-montserrat)] mt-6">
             @nifemiiabe
           </p>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 px-6 bg-[#0f0f0f]">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4 font-[family-name:var(--font-montserrat)]">
+              Common Questions
+            </p>
+            <h2 className="text-3xl md:text-4xl font-light text-[#f5f5f5] font-[family-name:var(--font-cormorant)]">
+              Frequently Asked Questions
+            </h2>
+            <div className="divider mt-6" />
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <details
+                key={index}
+                className="group bg-[#1a1a1a] border border-[#2a2a2a] hover:border-[#c9a962]/30 transition-colors"
+              >
+                <summary className="flex items-center justify-between cursor-pointer p-6 text-[#f5f5f5] font-[family-name:var(--font-cormorant)] text-lg">
+                  {faq.question}
+                  <svg
+                    className="w-5 h-5 text-[#c9a962] transition-transform group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-[#888888] font-[family-name:var(--font-montserrat)] text-sm leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
     </>

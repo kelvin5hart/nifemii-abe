@@ -514,7 +514,7 @@ export default function Home() {
               Book Consultation
             </Link>
             <a
-              href="https://wa.me/2348000000000"
+              href="https://wa.me/2347067601656"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-xs sm:text-sm"
