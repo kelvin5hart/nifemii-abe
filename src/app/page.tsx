@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import HeroCarousel from "@/components/HeroCarousel";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
 
 const featuredCollections = [
   {
@@ -303,7 +304,7 @@ export default function Home() {
           />
         </div>
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-10 sm:mb-16">
+          <div className="text-center mb-10 sm:mb-12">
             <p className="text-[#c9a962] text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 font-[family-name:var(--font-montserrat)]">
               Client Stories
             </p>
@@ -313,137 +314,7 @@ export default function Home() {
             <div className="divider" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {/* Testimonial 1 */}
-            <div className="bg-[#0f0f0f] border border-[#1a1a1a] p-6 sm:p-8 relative">
-              <svg className="w-8 h-8 text-[#c9a962]/20 absolute top-4 right-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-              </svg>
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 text-[#c9a962]" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <blockquote className="text-[#e0e0e0] text-sm sm:text-base font-[family-name:var(--font-cormorant)] leading-relaxed mb-6 italic">
-                &ldquo;Nifemii Abe transformed my vision into reality. The attention to detail and craftsmanship is unparalleled. I felt like royalty on my wedding day.&rdquo;
-              </blockquote>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#c9a962]/20 flex items-center justify-center">
-                  <span className="text-[#c9a962] text-sm font-[family-name:var(--font-cormorant)] font-semibold">AO</span>
-                </div>
-                <div>
-                  <p className="text-[#f5f5f5] text-sm font-[family-name:var(--font-montserrat)]">Adaeze Okonkwo</p>
-                  <p className="text-[#888888] text-xs font-[family-name:var(--font-montserrat)]">Bride, Lagos</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonial 2 */}
-            <div className="bg-[#0f0f0f] border border-[#1a1a1a] p-6 sm:p-8 relative">
-              <svg className="w-8 h-8 text-[#c9a962]/20 absolute top-4 right-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-              </svg>
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 text-[#c9a962]" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <blockquote className="text-[#e0e0e0] text-sm sm:text-base font-[family-name:var(--font-cormorant)] leading-relaxed mb-6 italic">
-                &ldquo;The agbada Nifemii created for my traditional wedding was beyond my expectations. The quality of the fabric and the intricate embroidery made me stand out. Highly recommended!&rdquo;
-              </blockquote>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#c9a962]/20 flex items-center justify-center">
-                  <span className="text-[#c9a962] text-sm font-[family-name:var(--font-cormorant)] font-semibold">CO</span>
-                </div>
-                <div>
-                  <p className="text-[#f5f5f5] text-sm font-[family-name:var(--font-montserrat)]">Chukwuemeka Obi</p>
-                  <p className="text-[#888888] text-xs font-[family-name:var(--font-montserrat)]">Groom, Abuja</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonial 3 */}
-            <div className="bg-[#0f0f0f] border border-[#1a1a1a] p-6 sm:p-8 relative">
-              <svg className="w-8 h-8 text-[#c9a962]/20 absolute top-4 right-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-              </svg>
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 text-[#c9a962]" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <blockquote className="text-[#e0e0e0] text-sm sm:text-base font-[family-name:var(--font-cormorant)] leading-relaxed mb-6 italic">
-                &ldquo;I&apos;ve been a client for 3 years now. Every piece I&apos;ve ordered has been perfect. The consultation process is thorough and the delivery is always on time. True professionalism!&rdquo;
-              </blockquote>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#c9a962]/20 flex items-center justify-center">
-                  <span className="text-[#c9a962] text-sm font-[family-name:var(--font-cormorant)] font-semibold">FA</span>
-                </div>
-                <div>
-                  <p className="text-[#f5f5f5] text-sm font-[family-name:var(--font-montserrat)]">Funke Adeyemi</p>
-                  <p className="text-[#888888] text-xs font-[family-name:var(--font-montserrat)]">Loyal Client, Lagos</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonial 4 */}
-            <div className="bg-[#0f0f0f] border border-[#1a1a1a] p-6 sm:p-8 relative md:col-span-2 lg:col-span-1">
-              <svg className="w-8 h-8 text-[#c9a962]/20 absolute top-4 right-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-              </svg>
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 text-[#c9a962]" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <blockquote className="text-[#e0e0e0] text-sm sm:text-base font-[family-name:var(--font-cormorant)] leading-relaxed mb-6 italic">
-                &ldquo;Coordinating aso-ebi for my sister&apos;s wedding was stressful until I found Nifemii Abe. They handled everything seamlessly and all 50 guests looked stunning!&rdquo;
-              </blockquote>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#c9a962]/20 flex items-center justify-center">
-                  <span className="text-[#c9a962] text-sm font-[family-name:var(--font-cormorant)] font-semibold">BI</span>
-                </div>
-                <div>
-                  <p className="text-[#f5f5f5] text-sm font-[family-name:var(--font-montserrat)]">Bukola Ibrahim</p>
-                  <p className="text-[#888888] text-xs font-[family-name:var(--font-montserrat)]">Wedding Party, Port Harcourt</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonial 5 */}
-            <div className="bg-[#0f0f0f] border border-[#1a1a1a] p-6 sm:p-8 relative lg:col-span-2">
-              <svg className="w-8 h-8 text-[#c9a962]/20 absolute top-4 right-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-              </svg>
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 text-[#c9a962]" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <blockquote className="text-[#e0e0e0] text-sm sm:text-base font-[family-name:var(--font-cormorant)] leading-relaxed mb-6 italic">
-                &ldquo;As someone based in the UK, I was skeptical about ordering custom outfits from Nigeria. Nifemii Abe exceeded all expectations - from virtual consultations to international delivery. The fit was perfect and the quality speaks for itself. I&apos;ve already recommended them to all my friends!&rdquo;
-              </blockquote>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#c9a962]/20 flex items-center justify-center">
-                  <span className="text-[#c9a962] text-sm font-[family-name:var(--font-cormorant)] font-semibold">TO</span>
-                </div>
-                <div>
-                  <p className="text-[#f5f5f5] text-sm font-[family-name:var(--font-montserrat)]">Tolu Ogundimu</p>
-                  <p className="text-[#888888] text-xs font-[family-name:var(--font-montserrat)]">International Client, London</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <TestimonialCarousel />
         </div>
       </section>
 
