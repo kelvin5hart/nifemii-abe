@@ -56,7 +56,7 @@ export default function Home() {
         {/* Hero Content */}
         <div className="relative z-20 text-center px-4 sm:px-6 max-w-4xl mx-auto">
           <p className="text-[#c9a962] text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4 sm:mb-6 font-[family-name:var(--font-montserrat)] animate-fade-in">
-            Lagos, Nigeria
+            Bespoke Luxury Fashion
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-light tracking-[0.05em] sm:tracking-[0.1em] text-[#f5f5f5] font-[family-name:var(--font-cormorant)] mb-4 sm:mb-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
             NIFEMII <span className="text-[#c9a962]">ABE</span>
