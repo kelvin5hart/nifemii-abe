@@ -1,113 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-const products = [
-  {
-    id: 1,
-    name: "Geometric Kaftan Set",
-    description: "Beige kaftan with bold black geometric pattern. Modern senator style with matching trousers.",
-    price: 85000,
-    image: "/images/outfit1.jpg",
-    category: "Kaftan",
-    sizes: ["M", "L", "XL", "XXL"],
-    color: "Beige/Black",
-  },
-  {
-    id: 2,
-    name: "Sage Minimalist Senator",
-    description: "Clean sage green senator with subtle pocket detail. Short sleeve design perfect for casual elegance.",
-    price: 65000,
-    image: "/images/outfit2.jpg",
-    category: "Senator",
-    sizes: ["M", "L", "XL", "XXL"],
-    color: "Sage Green",
-  },
-  {
-    id: 3,
-    name: "Teal Contrast Kaftan",
-    description: "Sophisticated teal kaftan with white chest panel. Three-quarter sleeve design with side slits.",
-    price: 75000,
-    image: "/images/outfit3.jpg",
-    category: "Kaftan",
-    sizes: ["M", "L", "XL", "XXL"],
-    color: "Teal/White",
-  },
-  {
-    id: 4,
-    name: "Rose Senator Set",
-    description: "Elegant dusty rose senator with decorative stitch detailing. Short sleeve with matching trousers.",
-    price: 68000,
-    image: "/images/outfit4.jpg",
-    category: "Senator",
-    sizes: ["M", "L", "XL", "XXL"],
-    color: "Dusty Rose",
-  },
-  {
-    id: 5,
-    name: "Olive Embroidered Kaftan",
-    description: "Rich olive kaftan with intricate shoulder embroidery. Premium fabric with matching trousers.",
-    price: 95000,
-    image: "/images/outfit5.jpg",
-    category: "Kaftan",
-    sizes: ["M", "L", "XL", "XXL"],
-    color: "Olive",
-  },
-  {
-    id: 6,
-    name: "Ankara Cuff Senator",
-    description: "Lime green senator with vibrant Ankara cuff details. Long sleeve design with traditional touch.",
-    price: 78000,
-    image: "/images/outfit6.jpg",
-    category: "Senator",
-    sizes: ["M", "L", "XL", "XXL"],
-    color: "Lime Green",
-  },
-  {
-    id: 7,
-    name: "Urban Print Kaftan",
-    description: "Bold black and white abstract print kaftan. Contemporary design with solid black sleeves and trousers.",
-    price: 72000,
-    image: "/images/outfit7.jpg",
-    category: "Kaftan",
-    sizes: ["M", "L", "XL", "XXL"],
-    color: "Black/White",
-  },
-  {
-    id: 8,
-    name: "Artisan Portrait Kaftan",
-    description: "Statement brown kaftan with hand-painted artistic portrait. Unique piece for special occasions.",
-    price: 120000,
-    image: "/images/outfit8.jpg",
-    category: "Kaftan",
-    sizes: ["M", "L", "XL", "XXL"],
-    color: "Brown",
-  },
-  {
-    id: 9,
-    name: "Abstract Art Top Set",
-    description: "Black oversized top with colorful abstract art detail. Modern silhouette with matching trousers.",
-    price: 82000,
-    image: "/images/outfit9.jpg",
-    category: "Contemporary",
-    sizes: ["M", "L", "XL", "XXL"],
-    color: "Black",
-  },
-  {
-    id: 10,
-    name: "Velvet Pearl Senator",
-    description: "Luxurious navy blue velvet senator with pearl embellishments. Perfect for evening events.",
-    price: 110000,
-    image: "/images/outfit10.jpg",
-    category: "Senator",
-    sizes: ["M", "L", "XL", "XXL"],
-    color: "Navy Blue",
-  },
-];
-
-const categories = ["All", "Senator", "Kaftan", "Contemporary"];
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { Product } from "@/lib/firebase-types";
+import { useCart } from "@/contexts/CartContext";
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat("en-NG", {
@@ -118,17 +17,64 @@ const formatPrice = (price: number) => {
 };
 
 export default function Shop() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [categories, setCategories] = useState<string[]>(["All"]);
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    // Fetch products from Firebase - filter active ones client-side to avoid index requirement
+    const productsQuery = query(
+      collection(db, "products"),
+      orderBy("createdAt", "desc")
+    );
+
+    const unsubscribe = onSnapshot(productsQuery, (snapshot) => {
+      const allProducts = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Product[];
+
+      // Filter active products client-side
+      const activeProducts = allProducts.filter((p) => p.active);
+      setProducts(activeProducts);
+
+      // Extract unique categories from active products
+      const uniqueCategories = ["All", ...new Set(activeProducts.map((p) => p.category).filter(Boolean))];
+      setCategories(uniqueCategories);
+
+      setLoading(false);
+    }, (error) => {
+      console.error("Error fetching products:", error);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const filteredProducts = activeCategory === "All"
     ? products
     : products.filter((item) => item.category === activeCategory);
 
-  const handleInquiry = (product: typeof products[0]) => {
-    const message = `Hi, I'm interested in purchasing the "${product.name}" (${product.color}) - ${formatPrice(product.price)}. Please let me know the available sizes and how to proceed.`;
-    const whatsappUrl = `https://wa.me/2347067601656?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+  const handleAddToCart = () => {
+    if (!selectedProduct || !selectedSize) return;
+    addToCart(selectedProduct, selectedSize);
+    setSelectedProduct(null);
+    setSelectedSize("");
+  };
+
+  const getAvailableSizes = (product: Product) => {
+    return Object.entries(product.sizes)
+      .filter(([, stock]) => stock > 0)
+      .map(([size]) => size);
+  };
+
+  const isInStock = (product: Product) => {
+    return Object.values(product.sizes).some((stock) => stock > 0);
   };
 
   return (
@@ -183,47 +129,101 @@ export default function Shop() {
       {/* Products Grid */}
       <section className="py-8 sm:py-16 px-4 sm:px-6 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="group cursor-pointer"
-                onClick={() => setSelectedProduct(product)}
-              >
-                <div className="aspect-[3/4] relative overflow-hidden mb-2 sm:mb-4">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent opacity-60" />
-                  <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-[#c9a962]/90 px-2 py-0.5 sm:px-3 sm:py-1">
-                    <span className="text-[8px] sm:text-xs text-[#0a0a0a] font-[family-name:var(--font-montserrat)] uppercase tracking-wider">
-                      {product.category}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-                    <p className="text-[#c9a962] text-sm sm:text-lg font-[family-name:var(--font-montserrat)] font-medium">
-                      {formatPrice(product.price)}
-                    </p>
-                  </div>
-                </div>
-                <h3 className="text-sm sm:text-base lg:text-lg font-[family-name:var(--font-cormorant)] text-[#f5f5f5] group-hover:text-[#c9a962] transition-colors">
-                  {product.name}
-                </h3>
-                <p className="text-[#888888] text-[10px] sm:text-xs font-[family-name:var(--font-montserrat)] mt-0.5 sm:mt-1">
-                  {product.color}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {filteredProducts.length === 0 && (
+          {loading ? (
+            <div className="flex items-center justify-center py-16">
+              <div className="w-8 h-8 border-2 border-[#c9a962] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : filteredProducts.length === 0 ? (
             <div className="text-center py-16">
-              <p className="text-[#888888] font-[family-name:var(--font-montserrat)]">
-                No products found in this category.
+              <svg
+                className="w-16 h-16 text-[#2a2a2a] mx-auto mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1}
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                />
+              </svg>
+              <p className="text-[#888888] font-[family-name:var(--font-montserrat)] mb-4">
+                No products available in this category.
               </p>
+              <p className="text-[#888888] text-sm font-[family-name:var(--font-montserrat)]">
+                Check back soon for new arrivals!
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
+              {filteredProducts.map((product) => (
+                <Link
+                  key={product.id}
+                  href={`/shop/${product.id}`}
+                  className="group cursor-pointer block"
+                >
+                  <div className="aspect-[3/4] relative overflow-hidden mb-2 sm:mb-4">
+                    <Image
+                      src={product.images[0] || "/images/placeholder.jpg"}
+                      alt={product.name}
+                      fill
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent opacity-60" />
+
+                    {/* Category Badge */}
+                    <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-[#c9a962]/90 px-2 py-0.5 sm:px-3 sm:py-1">
+                      <span className="text-[8px] sm:text-xs text-[#0a0a0a] font-[family-name:var(--font-montserrat)] uppercase tracking-wider">
+                        {product.category}
+                      </span>
+                    </div>
+
+                    {/* Sale Badge */}
+                    {product.salePrice && (
+                      <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-red-500 px-2 py-0.5 sm:px-3 sm:py-1">
+                        <span className="text-[8px] sm:text-xs text-white font-[family-name:var(--font-montserrat)] uppercase tracking-wider">
+                          Sale
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Out of Stock Overlay */}
+                    {!isInStock(product) && (
+                      <div className="absolute inset-0 bg-[#0a0a0a]/70 flex items-center justify-center">
+                        <span className="text-[#f5f5f5] text-sm font-[family-name:var(--font-montserrat)] uppercase tracking-wider">
+                          Sold Out
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                      {product.salePrice ? (
+                        <div className="flex items-center gap-2">
+                          <p className="text-[#c9a962] text-sm sm:text-lg font-[family-name:var(--font-montserrat)] font-medium">
+                            {formatPrice(product.salePrice)}
+                          </p>
+                          <p className="text-[#888888] text-xs sm:text-sm font-[family-name:var(--font-montserrat)] line-through">
+                            {formatPrice(product.price)}
+                          </p>
+                        </div>
+                      ) : (
+                        <p className="text-[#c9a962] text-sm sm:text-lg font-[family-name:var(--font-montserrat)] font-medium">
+                          {formatPrice(product.price)}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <h3 className="text-sm sm:text-base lg:text-lg font-[family-name:var(--font-cormorant)] text-[#f5f5f5] group-hover:text-[#c9a962] transition-colors">
+                    {product.name}
+                  </h3>
+                  {product.colors && product.colors.length > 0 && (
+                    <p className="text-[#888888] text-[10px] sm:text-xs font-[family-name:var(--font-montserrat)] mt-0.5 sm:mt-1">
+                      {product.colors.join(", ")}
+                    </p>
+                  )}
+                </Link>
+              ))}
             </div>
           )}
         </div>
@@ -240,13 +240,92 @@ export default function Shop() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="aspect-[3/4] relative">
-                <Image
-                  src={selectedProduct.image}
-                  alt={selectedProduct.name}
-                  fill
-                  className="object-cover object-top"
-                />
+              {/* Image Gallery */}
+              <div className="relative">
+                {/* Main Image */}
+                <div className="aspect-[3/4] relative">
+                  <Image
+                    src={selectedProduct.images[selectedImageIndex] || "/images/placeholder.jpg"}
+                    alt={selectedProduct.name}
+                    fill
+                    className="object-cover object-top"
+                  />
+                  {selectedProduct.salePrice && (
+                    <div className="absolute top-4 left-4 bg-red-500 px-3 py-1">
+                      <span className="text-xs text-white font-[family-name:var(--font-montserrat)] uppercase tracking-wider">
+                        Sale
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Navigation Arrows - only show if multiple images */}
+                  {selectedProduct.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedImageIndex((prev) =>
+                            prev === 0 ? selectedProduct.images.length - 1 : prev - 1
+                          );
+                        }}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#0a0a0a]/70 hover:bg-[#0a0a0a]/90 text-white flex items-center justify-center transition-colors"
+                        aria-label="Previous image"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedImageIndex((prev) =>
+                            prev === selectedProduct.images.length - 1 ? 0 : prev + 1
+                          );
+                        }}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#0a0a0a]/70 hover:bg-[#0a0a0a]/90 text-white flex items-center justify-center transition-colors"
+                        aria-label="Next image"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </>
+                  )}
+
+                  {/* Image Counter */}
+                  {selectedProduct.images.length > 1 && (
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#0a0a0a]/70 px-3 py-1 text-xs text-white font-[family-name:var(--font-montserrat)]">
+                      {selectedImageIndex + 1} / {selectedProduct.images.length}
+                    </div>
+                  )}
+                </div>
+
+                {/* Thumbnail Strip - only show if multiple images */}
+                {selectedProduct.images.length > 1 && (
+                  <div className="flex gap-2 p-3 bg-[#0a0a0a] overflow-x-auto">
+                    {selectedProduct.images.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedImageIndex(idx);
+                        }}
+                        className={`flex-shrink-0 w-16 h-20 relative border-2 transition-colors ${
+                          selectedImageIndex === idx
+                            ? "border-[#c9a962]"
+                            : "border-transparent hover:border-[#888888]"
+                        }`}
+                      >
+                        <Image
+                          src={img}
+                          alt={`${selectedProduct.name} - Image ${idx + 1}`}
+                          fill
+                          className="object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
               <div className="p-6 sm:p-8 flex flex-col">
                 <button
@@ -264,48 +343,86 @@ export default function Shop() {
                 <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-cormorant)] text-[#f5f5f5] mb-2">
                   {selectedProduct.name}
                 </h2>
-                <p className="text-2xl text-[#c9a962] font-[family-name:var(--font-montserrat)] mb-4">
-                  {formatPrice(selectedProduct.price)}
-                </p>
+
+                {selectedProduct.salePrice ? (
+                  <div className="flex items-center gap-3 mb-4">
+                    <p className="text-2xl text-[#c9a962] font-[family-name:var(--font-montserrat)]">
+                      {formatPrice(selectedProduct.salePrice)}
+                    </p>
+                    <p className="text-lg text-[#888888] font-[family-name:var(--font-montserrat)] line-through">
+                      {formatPrice(selectedProduct.price)}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-2xl text-[#c9a962] font-[family-name:var(--font-montserrat)] mb-4">
+                    {formatPrice(selectedProduct.price)}
+                  </p>
+                )}
 
                 <p className="text-[#888888] text-sm font-[family-name:var(--font-montserrat)] mb-6 leading-relaxed">
                   {selectedProduct.description}
                 </p>
 
-                <div className="mb-4">
-                  <p className="text-[#f5f5f5] text-sm font-[family-name:var(--font-montserrat)] mb-2">
-                    Color: <span className="text-[#888888]">{selectedProduct.color}</span>
-                  </p>
-                </div>
+                {selectedProduct.colors && selectedProduct.colors.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-[#f5f5f5] text-sm font-[family-name:var(--font-montserrat)] mb-2">
+                      Color: <span className="text-[#888888]">{selectedProduct.colors.join(", ")}</span>
+                    </p>
+                  </div>
+                )}
 
+                {/* Size Selection */}
                 <div className="mb-6">
                   <p className="text-[#f5f5f5] text-sm font-[family-name:var(--font-montserrat)] mb-2">
-                    Available Sizes:
+                    Select Size:
                   </p>
-                  <div className="flex gap-2">
-                    {selectedProduct.sizes.map((size) => (
-                      <span
+                  <div className="flex flex-wrap gap-2">
+                    {Object.entries(selectedProduct.sizes).map(([size, stock]) => (
+                      <button
                         key={size}
-                        className="px-3 py-1 border border-[#2a2a2a] text-[#888888] text-sm font-[family-name:var(--font-montserrat)]"
+                        onClick={() => stock > 0 && setSelectedSize(size)}
+                        disabled={stock === 0}
+                        className={`px-4 py-2 border text-sm font-[family-name:var(--font-montserrat)] transition-colors ${
+                          selectedSize === size
+                            ? "border-[#c9a962] bg-[#c9a962] text-[#0a0a0a]"
+                            : stock > 0
+                            ? "border-[#2a2a2a] text-[#888888] hover:border-[#c9a962] hover:text-[#c9a962]"
+                            : "border-[#2a2a2a] text-[#444444] cursor-not-allowed line-through"
+                        }`}
                       >
                         {size}
-                      </span>
+                      </button>
                     ))}
                   </div>
+                  {!selectedSize && isInStock(selectedProduct) && (
+                    <p className="text-[#c9a962] text-xs mt-2 font-[family-name:var(--font-montserrat)]">
+                      Please select a size
+                    </p>
+                  )}
                 </div>
 
                 <div className="mt-auto space-y-3">
-                  <button
-                    onClick={() => handleInquiry(selectedProduct)}
-                    className="w-full bg-[#c9a962] text-[#0a0a0a] py-3 text-sm tracking-[0.1em] uppercase font-[family-name:var(--font-montserrat)] hover:bg-[#e5d4a1] transition-colors flex items-center justify-center gap-2"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
-                    Order via WhatsApp
-                  </button>
+                  {isInStock(selectedProduct) ? (
+                    <button
+                      onClick={handleAddToCart}
+                      disabled={!selectedSize}
+                      className="w-full bg-[#c9a962] text-[#0a0a0a] py-3 text-sm tracking-[0.1em] uppercase font-[family-name:var(--font-montserrat)] hover:bg-[#e5d4a1] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                      </svg>
+                      Add to Bag
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className="w-full bg-[#2a2a2a] text-[#888888] py-3 text-sm tracking-[0.1em] uppercase font-[family-name:var(--font-montserrat)] cursor-not-allowed"
+                    >
+                      Sold Out
+                    </button>
+                  )}
                   <p className="text-[#888888] text-xs text-center font-[family-name:var(--font-montserrat)]">
-                    Contact us to confirm size availability and arrange payment
+                    Free delivery on orders above ₦100,000
                   </p>
                 </div>
               </div>
@@ -354,7 +471,7 @@ export default function Shop() {
                 Secure Payment
               </h3>
               <p className="text-[#888888] text-sm font-[family-name:var(--font-montserrat)]">
-                Bank transfer or cash payment. 50% deposit to confirm order.
+                Pay securely online or choose pay on delivery.
               </p>
             </div>
           </div>
