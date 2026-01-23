@@ -96,6 +96,64 @@ Add these in Vercel Dashboard > Settings > Environment Variables:
 
 ---
 
+## International Expansion
+
+To support customers outside Nigeria, the following changes are needed:
+
+### 1. Phone Number Authentication
+
+Currently uses Nigerian format (+234). To support international:
+
+- **File**: `src/app/account/login/page.tsx`
+- Add country code selector (dropdown with flags)
+- Update phone validation to accept international formats
+- Consider using a library like `libphonenumber-js` for validation
+
+### 2. Currency Support
+
+Currently displays prices in NGN only. To add multi-currency:
+
+- **Files**: `src/app/checkout/page.tsx`, `src/app/shop/[id]/page.tsx`, etc.
+- Add currency selector to header/footer
+- Store user's preferred currency in localStorage or user profile
+- Use exchange rate API for conversions (e.g., exchangerate-api.com)
+- Update `formatPrice()` function to accept currency parameter
+
+### 3. Delivery Settings
+
+Currently uses Nigerian states. To support international shipping:
+
+- **File**: `src/app/admin/settings/page.tsx`
+- Add country-based delivery fees
+- Create zones (e.g., West Africa, Europe, Americas)
+- Update checkout to show country selector before state/region
+
+### 4. Payment Methods
+
+Paystack primarily supports African cards. For international payments:
+
+- Add Stripe as alternative payment processor
+- Detect user's location and show appropriate payment option
+- Create `/api/stripe/` endpoints similar to Paystack
+
+### 5. SMS OTP Service
+
+Termii works for Nigerian numbers. For international:
+
+- Use Twilio for global SMS delivery
+- Create environment variable to switch between providers
+- Update `src/lib/otp-service.ts` to support multiple providers
+
+### 6. Language/Localization (Future)
+
+For multi-language support:
+
+- Use Next.js i18n routing
+- Create translation files for each language
+- Add language selector to header
+
+---
+
 ## Tech Stack
 
 - **Framework**: Next.js 15 (App Router)

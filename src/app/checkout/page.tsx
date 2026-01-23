@@ -53,6 +53,7 @@ export default function CheckoutPage() {
 
   // Payment
   const [paymentMethod, setPaymentMethod] = useState<"online" | "pay-on-delivery">("online");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   // Load user data if logged in
   useEffect(() => {
@@ -557,6 +558,28 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
+                {/* Terms and Conditions */}
+                <div className="border-t border-[#1a1a1a] pt-6 mt-6">
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={acceptedTerms}
+                      onChange={(e) => setAcceptedTerms(e.target.checked)}
+                      className="mt-1 w-4 h-4 accent-[#c9a962]"
+                    />
+                    <span className="text-sm text-[#888888] font-[family-name:var(--font-montserrat)]">
+                      I agree to the{" "}
+                      <Link
+                        href="/terms"
+                        target="_blank"
+                        className="text-[#c9a962] hover:underline"
+                      >
+                        Terms & Conditions
+                      </Link>
+                    </span>
+                  </label>
+                </div>
+
                 <div className="flex gap-4 mt-6">
                   <button
                     onClick={() => setStep(2)}
@@ -566,8 +589,8 @@ export default function CheckoutPage() {
                   </button>
                   <button
                     onClick={handlePlaceOrder}
-                    disabled={loading}
-                    className="flex-1 bg-[#c9a962] text-[#0a0a0a] py-3 text-sm tracking-[0.1em] uppercase font-[family-name:var(--font-montserrat)] hover:bg-[#d4b87a] transition-colors disabled:opacity-50"
+                    disabled={loading || !acceptedTerms}
+                    className="flex-1 bg-[#c9a962] text-[#0a0a0a] py-3 text-sm tracking-[0.1em] uppercase font-[family-name:var(--font-montserrat)] hover:bg-[#d4b87a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? "Processing..." : paymentMethod === "online" ? "Pay Now" : "Place Order"}
                   </button>

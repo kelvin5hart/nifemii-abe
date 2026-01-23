@@ -75,8 +75,8 @@ export default function Footer() {
               {[
                 { href: "/shop", label: "Shop" },
                 { href: "/services", label: "Services" },
-                { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
+                { href: "/terms", label: "Terms & Conditions" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
