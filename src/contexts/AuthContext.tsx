@@ -60,11 +60,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  // Flag to prevent onAuthStateChanged from overwriting manually set user
+  const [manualAuthInProgress, setManualAuthInProgress] = useState(false);
 
   // Listen to auth state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       setFirebaseUser(firebaseUser);
+
+      // Skip if manual auth is in progress (OTP or password login)
+      if (manualAuthInProgress) {
+        setLoading(false);
+        return;
+      }
 
       if (firebaseUser) {
         // Fetch user data from Firestore
@@ -74,7 +82,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         } else {
           // User exists in Firebase Auth but not in Firestore
           // This can happen with anonymous users before phone verification
-          setUser(null);
+          // Don't set user to null if we already have a user (from manual login)
+          if (!user) {
+            setUser(null);
+          }
         }
       } else {
         setUser(null);
@@ -84,7 +95,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [manualAuthInProgress, user]);
 
   // Send OTP using custom service
   const sendOTP = async (phoneNumber: string) => {
@@ -102,6 +113,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const formattedPhone = formatPhoneNumber(phoneNumber);
 
+    // Set flag to prevent onAuthStateChanged from interfering
+    setManualAuthInProgress(true);
+
     try {
       // Check if a user with this phone number already exists
       const usersQuery = query(
@@ -111,22 +125,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const existingUsers = await getDocs(usersQuery);
 
       let userId: string;
+      let userData: User;
 
       if (!existingUsers.empty) {
         // User exists - use their ID
         userId = existingUsers.docs[0].id;
+        userData = { id: userId, ...existingUsers.docs[0].data() } as User;
 
-        // Sign in anonymously to get a session (we'll link to the user data)
-        const anonResult = await signInAnonymously(auth);
+        // Sign in anonymously to get a session
+        await signInAnonymously(auth);
 
-        // If the anonymous user ID doesn't match, we need to handle this
-        // For simplicity, we'll just use the existing user data
-        if (anonResult.user.uid !== userId) {
-          // Update the user doc to link with this auth session
-          // Or create a session mapping
-        }
-
-        setUser({ id: userId, ...existingUsers.docs[0].data() } as User);
+        // Set user data immediately
+        setUser(userData);
       } else {
         // New user - create account
         const anonResult = await signInAnonymously(auth);
@@ -139,13 +149,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           createdBy: "self",
         });
 
-        setUser({
+        userData = {
           id: userId,
           phone: formattedPhone,
           createdAt: new Date(),
           createdBy: "self",
-        });
+        };
+
+        setUser(userData);
       }
+
+      // Small delay to ensure state is set before clearing flag
+      setTimeout(() => {
+        setManualAuthInProgress(false);
+      }, 100);
 
       return {
         success: true,
@@ -153,6 +170,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       };
     } catch (error) {
       console.error("Sign in error:", error);
+      setManualAuthInProgress(false);
       return {
         success: false,
         message: "Failed to sign in. Please try again.",
@@ -207,15 +225,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return { success: false, message: "Incorrect password" };
       }
 
+      // Set flag to prevent onAuthStateChanged from interfering
+      setManualAuthInProgress(true);
+
       // Sign in anonymously to create a session
       await signInAnonymously(auth);
 
       // Set the user data
       setUser({ id: userDoc.id, ...userData } as User);
 
+      // Small delay to ensure state is set before clearing flag
+      setTimeout(() => {
+        setManualAuthInProgress(false);
+      }, 100);
+
       return { success: true, message: "Logged in successfully!" };
     } catch (error) {
       console.error("Login error:", error);
+      setManualAuthInProgress(false);
       return { success: false, message: "Failed to login. Please try again." };
     }
   };
