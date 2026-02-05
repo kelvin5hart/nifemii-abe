@@ -1,3 +1,0 @@
-module.exports=[90482,a=>{"use strict";var b=a.i(7997);function c({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>c,"metadata",0,{title:"Collections",description:"Explore our curated fashion collections - ready to wear, custom designs, wedding attire, and traditional Nigerian fashion. Each piece crafted with meticulous attention to detail.",openGraph:{title:"Collections | Nifemii Abe",description:"Explore our curated fashion collections - ready to wear, custom designs, wedding attire, and traditional Nigerian fashion.",images:["/images/IMG_1596.jpg"]}}])}];
-
-//# sourceMappingURL=src_app_collections_layout_tsx_1b09da2e._.js.map

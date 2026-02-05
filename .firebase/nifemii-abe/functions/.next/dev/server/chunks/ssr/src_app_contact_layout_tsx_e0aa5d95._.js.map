@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/kelvinatemie-hart/Documents/Website/nifemii-abe/src/app/contact/layout.tsx"],"sourcesContent":["import { Metadata } from \"next\";\n\nexport const metadata: Metadata = {\n  title: \"Contact\",\n  description: \"Book a fashion consultation with Nifemii Abe. Get in touch via phone, email, or WhatsApp. Located in Lagos, Nigeria.\",\n  openGraph: {\n    title: \"Contact | Nifemii Abe\",\n    description: \"Book a fashion consultation with Nifemii Abe. Get in touch via phone, email, or WhatsApp.\",\n  },\n};\n\nexport default function ContactLayout({\n  children,\n}: {\n  children: React.ReactNode;\n}) {\n  return <>{children}</>;\n}\n"],"names":[],"mappings":";;;;;;;;AAEO,MAAM,WAAqB;IAChC,OAAO;IACP,aAAa;IACb,WAAW;QACT,OAAO;QACP,aAAa;IACf;AACF;AAEe,SAAS,cAAc,EACpC,QAAQ,EAGT;IACC,qBAAO;kBAAG;;AACZ"}}]
-}

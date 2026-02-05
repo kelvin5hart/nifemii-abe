@@ -1,3 +1,0 @@
-module.exports=[44848,a=>{"use strict";var b=a.i(7997);function c({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>c,"metadata",0,{title:"Shop",description:"Shop our ready-to-wear collection of premium Nigerian menswear. Senator styles, kaftans, and contemporary designs available for immediate purchase.",openGraph:{title:"Shop | Nifemii Abe",description:"Shop our ready-to-wear collection of premium Nigerian menswear. Senator styles, kaftans, and contemporary designs.",images:["/images/outfit5.jpg"]}}])}];
-
-//# sourceMappingURL=src_app_shop_layout_tsx_749a6d66._.js.map
