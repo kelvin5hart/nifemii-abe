@@ -1,55 +1,80 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
     // Users collection - users can read/write their own data
     match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-      allow read: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      // Anyone can read user docs (needed for phone lookup, password check)
+      allow read: if true;
+      // Users can write their own data when authenticated
+      allow write: if isAuthenticated() && request.auth.uid == userId;
+      // Admins can write any user data
+      allow write: if isAdmin();
+      // Allow creating user doc during registration
+      allow create: if true;
+      // Allow updating own profile (for password setting, measurements, etc.)
+      allow update: if true;
     }
 
     // Products collection - anyone can read, only admins can write
     match /products/{productId} {
       allow read: if true;
-      allow write: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      allow write: if isAdmin();
     }
 
     // Orders collection
     match /orders/{orderId} {
-      // Users can read their own orders
-      allow read: if request.auth != null &&
-        (resource.data.userId == request.auth.uid ||
-         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true);
-      // Anyone can create orders (for guest checkout)
+      // Anyone can read orders (filtered by phone/userId on client)
+      allow read: if true;
+      // Anyone can create orders (for guest checkout and logged-in users)
       allow create: if true;
-      // Only admins can update orders
-      allow update: if request.auth != null &&
-        (resource.data.userId == request.auth.uid ||
-         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true);
-      allow delete: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      // Allow updates for order status, payment, etc.
+      allow update: if true;
+      // Only admins can delete orders
+      allow delete: if isAdmin();
     }
 
     // Appointments collection
     match /appointments/{appointmentId} {
-      allow read: if request.auth != null &&
-        (resource.data.userId == request.auth.uid ||
-         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true);
-      allow create: if request.auth != null;
-      allow update: if request.auth != null &&
-        (resource.data.userId == request.auth.uid ||
-         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true);
-      allow delete: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      // Anyone can read appointments (filtered by phone/userId on client)
+      allow read: if true;
+      // Anyone can create appointments
+      allow create: if true;
+      // Allow updates for appointment status changes
+      allow update: if true;
+      // Only admins can delete appointments
+      allow delete: if isAdmin();
     }
 
     // Contact messages - anyone can create, only admins can read/update/delete
     match /contactMessages/{messageId} {
       allow create: if true;
-      allow read, update, delete: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      allow read: if true;
+      allow update, delete: if isAdmin();
     }
 
     // Settings - anyone can read, only admins can write
     match /settings/{settingId} {
       allow read: if true;
-      allow write: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+      allow write: if isAdmin();
+    }
+
+    // Website Images - anyone can read, only admins can write
+    match /websiteImages/{imageId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
   }
 }

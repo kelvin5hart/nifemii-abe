@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import CartDrawer from "./CartDrawer";
@@ -13,29 +13,40 @@ export default function Navbar() {
   const pathname = usePathname();
   const { itemCount, setIsCartOpen } = useCart();
   const { user } = useAuth();
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      lastScrollY.current = window.scrollY;
+
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(lastScrollY.current > 50);
+          ticking.current = false;
+        });
+        ticking.current = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (href: string) => {
+  const isActive = useCallback((href: string) => {
     if (href === "/") {
       return pathname === "/";
     }
     return pathname.startsWith(href);
-  };
+  }, [pathname]);
 
-  const navLinks = [
+  const navLinks = useMemo(() => [
     { href: "/", label: "Home" },
     { href: "/shop", label: "Shop" },
     { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
-  ];
+  ], []);
 
   return (
     <nav

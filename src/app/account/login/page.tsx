@@ -18,10 +18,17 @@ export default function CustomerLoginPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
-  const [testOtpCode, setTestOtpCode] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [recaptchaReady, setRecaptchaReady] = useState(false);
   const router = useRouter();
-  const { user, sendOTP, verifyOTPAndSignIn, checkHasPassword, loginWithPassword } = useAuth();
+  const {
+    user,
+    initializeRecaptcha,
+    sendOTP,
+    verifyOTPAndSignIn,
+    checkHasPassword,
+    loginWithPassword,
+  } = useAuth();
 
   // Redirect if already logged in
   useEffect(() => {
@@ -29,6 +36,39 @@ export default function CustomerLoginPage() {
       router.push("/account");
     }
   }, [user, router]);
+
+  // Initialize reCAPTCHA when component mounts
+  useEffect(() => {
+    let mounted = true;
+
+    const setupRecaptcha = async () => {
+      // Wait for DOM to be ready
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      if (!mounted) return;
+
+      try {
+        const success = await initializeRecaptcha("recaptcha-container");
+        if (mounted) {
+          setRecaptchaReady(success);
+          if (!success) {
+            console.error("reCAPTCHA initialization returned false");
+          }
+        }
+      } catch (error) {
+        console.error("Failed to initialize reCAPTCHA:", error);
+        if (mounted) {
+          setRecaptchaReady(false);
+        }
+      }
+    };
+
+    setupRecaptcha();
+
+    return () => {
+      mounted = false;
+    };
+  }, [initializeRecaptcha]);
 
   const formatPhoneDisplay = (value: string) => {
     const digits = value.replace(/\D/g, "");
@@ -40,6 +80,12 @@ export default function CustomerLoginPage() {
     setError("");
     setSuccess("");
     setLoading(true);
+
+    if (!recaptchaReady) {
+      setError("Please wait while we set up verification...");
+      setLoading(false);
+      return;
+    }
 
     try {
       // Check if user has a password set
@@ -54,9 +100,6 @@ export default function CustomerLoginPage() {
         const result = await sendOTP(phone);
         if (result.success) {
           setSuccess(result.message);
-          if (result.testCode) {
-            setTestOtpCode(result.testCode);
-          }
           setStep("otp");
         } else {
           setError(result.message);
@@ -80,16 +123,13 @@ export default function CustomerLoginPage() {
         const result = await sendOTP(phone);
         if (result.success) {
           setSuccess(result.message);
-          if (result.testCode) {
-            setTestOtpCode(result.testCode);
-          }
           setStep("otp");
         } else {
           setError(result.message);
         }
       } catch (err) {
         console.error(err);
-        setError("Failed to send OTP. Please try again.");
+        setError("Failed to send verification code. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -123,7 +163,7 @@ export default function CustomerLoginPage() {
     setLoading(true);
 
     try {
-      const result = await verifyOTPAndSignIn(phone, otp);
+      const result = await verifyOTPAndSignIn(otp);
 
       if (result.success) {
         router.push("/account");
@@ -132,7 +172,7 @@ export default function CustomerLoginPage() {
       }
     } catch (err) {
       console.error(err);
-      setError("Failed to verify OTP. Please try again.");
+      setError("Failed to verify code. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -150,11 +190,13 @@ export default function CustomerLoginPage() {
     setError("");
     setSuccess("");
     setLoginMethod("otp");
-    setTestOtpCode("");
   };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 py-20">
+      {/* Invisible reCAPTCHA container */}
+      <div id="recaptcha-container"></div>
+
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
@@ -174,7 +216,7 @@ export default function CustomerLoginPage() {
                 Enter Your Phone Number
               </h2>
               <p className="text-[#888888] text-sm font-[family-name:var(--font-montserrat)] mb-6">
-                We&apos;ll verify your number to sign you in
+                We&apos;ll send you a verification code via SMS
               </p>
 
               {error && (
@@ -213,7 +255,7 @@ export default function CustomerLoginPage() {
 
                 <button
                   type="submit"
-                  disabled={loading || phone.length < 10}
+                  disabled={loading || phone.length < 10 || !recaptchaReady}
                   className="w-full bg-[#c9a962] text-[#0a0a0a] py-3 font-[family-name:var(--font-montserrat)] text-sm uppercase tracking-wider hover:bg-[#d4b87a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Checking..." : "Continue"}
@@ -253,7 +295,7 @@ export default function CustomerLoginPage() {
                       disabled={loading}
                       className="w-full bg-[#c9a962] text-[#0a0a0a] py-3 font-[family-name:var(--font-montserrat)] text-sm uppercase tracking-wider hover:bg-[#d4b87a] transition-colors disabled:opacity-50"
                     >
-                      {loading ? "Sending OTP..." : "Sign in with OTP"}
+                      {loading ? "Sending Code..." : "Sign in with SMS Code"}
                     </button>
                   </>
                 ) : (
@@ -310,7 +352,7 @@ export default function CustomerLoginPage() {
                       }}
                       className="w-full text-[#888888] hover:text-[#c9a962] py-2 font-[family-name:var(--font-montserrat)] text-sm transition-colors"
                     >
-                      Use OTP instead
+                      Use SMS code instead
                     </button>
                   </form>
                 )}
@@ -320,7 +362,7 @@ export default function CustomerLoginPage() {
                   onClick={resetToPhone}
                   className="w-full text-[#888888] hover:text-[#c9a962] py-2 font-[family-name:var(--font-montserrat)] text-sm transition-colors"
                 >
-                  ← Change Phone Number
+                  Change Phone Number
                 </button>
               </div>
             </>
@@ -347,20 +389,6 @@ export default function CustomerLoginPage() {
                 </div>
               )}
 
-              {testOtpCode && (
-                <div className="bg-[#c9a962]/10 border border-[#c9a962]/50 px-4 py-4 mb-6 text-center">
-                  <p className="text-[#888888] text-xs font-[family-name:var(--font-montserrat)] mb-1">
-                    TESTING MODE - Your OTP Code:
-                  </p>
-                  <p className="text-[#c9a962] text-2xl font-bold tracking-[0.3em] font-[family-name:var(--font-montserrat)]">
-                    {testOtpCode}
-                  </p>
-                  <p className="text-[#666666] text-xs font-[family-name:var(--font-montserrat)] mt-2">
-                    This will be sent via SMS in production
-                  </p>
-                </div>
-              )}
-
               <form onSubmit={handleOTPSubmit} className="space-y-5">
                 <div>
                   <label
@@ -378,6 +406,7 @@ export default function CustomerLoginPage() {
                     maxLength={6}
                     className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 text-[#f5f5f5] focus:border-[#c9a962] focus:outline-none transition-colors font-[family-name:var(--font-montserrat)] text-sm text-center tracking-[0.5em] text-lg"
                     placeholder="000000"
+                    autoFocus
                   />
                   <p className="text-[#666666] text-xs mt-2 font-[family-name:var(--font-montserrat)]">
                     Code expires in 5 minutes
@@ -397,7 +426,7 @@ export default function CustomerLoginPage() {
                   onClick={resetToPhone}
                   className="w-full text-[#888888] hover:text-[#c9a962] py-2 font-[family-name:var(--font-montserrat)] text-sm transition-colors"
                 >
-                  ← Change Phone Number
+                  Change Phone Number
                 </button>
               </form>
             </>
@@ -406,7 +435,7 @@ export default function CustomerLoginPage() {
 
         <p className="text-center mt-6 text-[#888888] text-sm font-[family-name:var(--font-montserrat)]">
           <Link href="/" className="hover:text-[#c9a962] transition-colors">
-            ← Back to Website
+            Back to Website
           </Link>
         </p>
       </div>
