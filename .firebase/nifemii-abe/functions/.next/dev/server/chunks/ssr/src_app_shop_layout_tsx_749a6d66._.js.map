@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/kelvinatemie-hart/Documents/Website/nifemii-abe/src/app/shop/layout.tsx"],"sourcesContent":["import { Metadata } from \"next\";\n\nexport const metadata: Metadata = {\n  title: \"Shop\",\n  description: \"Shop our ready-to-wear collection of premium Nigerian menswear. Senator styles, kaftans, and contemporary designs available for immediate purchase.\",\n  openGraph: {\n    title: \"Shop | Nifemii Abe\",\n    description: \"Shop our ready-to-wear collection of premium Nigerian menswear. Senator styles, kaftans, and contemporary designs.\",\n    images: [\"/images/outfit5.jpg\"],\n  },\n};\n\nexport default function ShopLayout({\n  children,\n}: {\n  children: React.ReactNode;\n}) {\n  return <>{children}</>;\n}\n"],"names":[],"mappings":";;;;;;;;AAEO,MAAM,WAAqB;IAChC,OAAO;IACP,aAAa;IACb,WAAW;QACT,OAAO;QACP,aAAa;QACb,QAAQ;YAAC;SAAsB;IACjC;AACF;AAEe,SAAS,WAAW,EACjC,QAAQ,EAGT;IACC,qBAAO;kBAAG;;AACZ"}}]
+}

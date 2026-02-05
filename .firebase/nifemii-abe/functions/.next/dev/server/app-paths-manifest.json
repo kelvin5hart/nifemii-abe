@@ -1,0 +1,21 @@
+{
+  "/account/appointments/page": "app/account/appointments/page.js",
+  "/account/login/page": "app/account/login/page.js",
+  "/account/orders/page": "app/account/orders/page.js",
+  "/account/orders/verify/page": "app/account/orders/verify/page.js",
+  "/account/page": "app/account/page.js",
+  "/admin/appointments/page": "app/admin/appointments/page.js",
+  "/admin/finance/page": "app/admin/finance/page.js",
+  "/admin/messages/page": "app/admin/messages/page.js",
+  "/admin/orders/page": "app/admin/orders/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/products/page": "app/admin/products/page.js",
+  "/admin/settings/page": "app/admin/settings/page.js",
+  "/api/paystack/initialize/route": "app/api/paystack/initialize/route.js",
+  "/api/paystack/verify/route": "app/api/paystack/verify/route.js",
+  "/contact/page": "app/contact/page.js",
+  "/page": "app/page.js",
+  "/shop/[id]/page": "app/shop/[id]/page.js",
+  "/shop/page": "app/shop/page.js",
+  "/terms/page": "app/terms/page.js"
+}

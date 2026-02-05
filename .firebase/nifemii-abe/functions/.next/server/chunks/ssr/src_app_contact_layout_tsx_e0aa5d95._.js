@@ -1,0 +1,3 @@
+module.exports=[37064,a=>{"use strict";var b=a.i(7997);function c({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>c,"metadata",0,{title:"Contact",description:"Book a fashion consultation with Nifemii Abe. Get in touch via phone, email, or WhatsApp. Located in Lagos, Nigeria.",openGraph:{title:"Contact | Nifemii Abe",description:"Book a fashion consultation with Nifemii Abe. Get in touch via phone, email, or WhatsApp."}}])}];
+
+//# sourceMappingURL=src_app_contact_layout_tsx_e0aa5d95._.js.map

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/kelvinatemie-hart/Documents/Website/nifemii-abe/src/app/collections/layout.tsx"],"sourcesContent":["import { Metadata } from \"next\";\n\nexport const metadata: Metadata = {\n  title: \"Collections\",\n  description: \"Explore our curated fashion collections - ready to wear, custom designs, wedding attire, and traditional Nigerian fashion. Each piece crafted with meticulous attention to detail.\",\n  openGraph: {\n    title: \"Collections | Nifemii Abe\",\n    description: \"Explore our curated fashion collections - ready to wear, custom designs, wedding attire, and traditional Nigerian fashion.\",\n    images: [\"/images/IMG_1596.jpg\"],\n  },\n};\n\nexport default function CollectionsLayout({\n  children,\n}: {\n  children: React.ReactNode;\n}) {\n  return <>{children}</>;\n}\n"],"names":[],"mappings":";;;;;;;;AAEO,MAAM,WAAqB;IAChC,OAAO;IACP,aAAa;IACb,WAAW;QACT,OAAO;QACP,aAAa;QACb,QAAQ;YAAC;SAAuB;IAClC;AACF;AAEe,SAAS,kBAAkB,EACxC,QAAQ,EAGT;IACC,qBAAO;kBAAG;;AACZ"}}]
+}

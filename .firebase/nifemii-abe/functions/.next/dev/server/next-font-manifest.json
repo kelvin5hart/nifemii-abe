@@ -1,0 +1,75 @@
+{
+  "app": {
+    "[project]/src/app/account/appointments/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/account/login/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/account/orders/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/account/orders/verify/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/account/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/admin/appointments/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/admin/finance/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/admin/messages/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/admin/orders/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/admin/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/admin/products/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/admin/settings/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/contact/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/shop/[id]/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/shop/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ],
+    "[project]/src/app/terms/page": [
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

@@ -1,0 +1,892 @@
+[debug] [2026-02-05T04:50:50.107Z] ----------------------------------------------------------------------
+[debug] [2026-02-05T04:50:50.108Z] Command:       /Users/kelvinatemie-hart/.nvm/versions/node/v22.17.0/bin/node /Users/kelvinatemie-hart/.nvm/versions/node/v22.17.0/bin/firebase deploy
+[debug] [2026-02-05T04:50:50.108Z] CLI Version:   15.4.0
+[debug] [2026-02-05T04:50:50.108Z] Platform:      darwin
+[debug] [2026-02-05T04:50:50.108Z] Node Version:  v22.17.0
+[debug] [2026-02-05T04:50:50.108Z] Time:          Thu Feb 05 2026 05:50:50 GMT+0100 (West Africa Standard Time)
+[debug] [2026-02-05T04:50:50.108Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-02-05T04:50:50.744Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-05T04:50:50.744Z] > authorizing via signed-in user (atemiehartkelvin@gmail.com)
+[debug] [2026-02-05T04:50:50.745Z] [iam] checking project nifemii-abe for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-02-05T04:50:50.745Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:50.745Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:50.745Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions [none]
+[debug] [2026-02-05T04:50:50.745Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions x-goog-quota-user=projects/nifemii-abe
+[debug] [2026-02-05T04:50:50.745Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-02-05T04:50:52.012Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions 200
+[debug] [2026-02-05T04:50:52.013Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-02-05T04:50:52.013Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:52.013Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:52.014Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nifemii-abe [none]
+[debug] [2026-02-05T04:50:52.562Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nifemii-abe 200
+[debug] [2026-02-05T04:50:52.562Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nifemii-abe {"projectId":"nifemii-abe","projectNumber":"490965659315","displayName":"nifemii-abe","name":"projects/nifemii-abe","resources":{"hostingSite":"nifemii-abe"},"state":"ACTIVE","etag":"1_e6bb91df-7980-42f8-b68c-ae0596da8db9"}
+[debug] [2026-02-05T04:50:53.183Z] defaultcredentials: writing to file /Users/kelvinatemie-hart/.config/firebase/atemiehartkelvin_gmail_com_application_default_credentials.json
+[debug] [2026-02-05T04:50:53.184Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:53.184Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:53.184Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites pageToken=&pageSize=10
+[debug] [2026-02-05T04:50:54.540Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites 200
+[debug] [2026-02-05T04:50:54.540Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites {"sites":[{"name":"projects/nifemii-abe/sites/nifemii-abe","defaultUrl":"https://nifemii-abe.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2026-02-05T04:50:54.542Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:54.542Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:54.542Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites 
+[debug] [2026-02-05T04:50:54.845Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites 200
+[debug] [2026-02-05T04:50:54.845Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites {"sites":[{"name":"projects/nifemii-abe/sites/nifemii-abe","defaultUrl":"https://nifemii-abe.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2026-02-05T04:50:54.845Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:54.845Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:54.846Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nifemii-abe/webApps/-/config [none]
+[debug] [2026-02-05T04:50:55.576Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nifemii-abe/webApps/-/config 200
+[debug] [2026-02-05T04:50:55.576Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nifemii-abe/webApps/-/config {"projectId":"nifemii-abe","appId":"1:490965659315:web:33d27f74559a4d1130cac6","storageBucket":"nifemii-abe.firebasestorage.app","apiKey":"AIzaSyAJj-fxyI7NarHIg3Al7oaWrA0S1g3fbnk","authDomain":"nifemii-abe.firebaseapp.com","messagingSenderId":"490965659315","measurementId":"G-6P4X1158YK","projectNumber":"490965659315","version":"2"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2026-02-05T04:50:56.954Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:56.954Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:50:56.954Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites/nifemii-abe [none]
+[debug] [2026-02-05T04:50:57.320Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites/nifemii-abe 200
+[debug] [2026-02-05T04:50:57.320Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites/nifemii-abe {"name":"projects/nifemii-abe/sites/nifemii-abe","defaultUrl":"https://nifemii-abe.web.app","type":"DEFAULT_SITE"}
+[info] ▲ Next.js 16.1.4 (Turbopack)
+
+[info] - Environments: .env.local
+
+
+[info]   Creating an optimized production build ...
+
+[info] ✓ Compiled successfully in 8.5s
+
+[info]   Running TypeScript ...
+
+[info]   Collecting page data using 11 workers ...
+
+[info]   Generating static pages using 11 workers (0/35) ...
+
+[info]   Generating static pages using 11 workers (8/35) 
+
+[info]   Generating static pages using 11 workers (17/35) 
+
+[info]   Generating static pages using 11 workers (26/35) 
+
+[info] ✓ Generating static pages using 11 workers (35/35) in 309.9ms
+
+[info]   Finalizing page optimization ...
+
+[info] 
+
+[info] Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /account
+├ ○ /account/appointments
+├ ○ /account/login
+├ ○ /account/measurements
+├ ○ /account/orders
+├ ○ /account/orders/verify
+├ ○ /account/profile
+├ ○ /admin
+├ ○ /admin/appointments
+├ ○ /admin/customers
+├ ○ /admin/finance
+├ ○ /admin/images
+├ ○ /admin/login
+├ ○ /admin/messages
+├ ○ /admin/orders
+├ ○ /admin/orders/new
+├ ○ /admin/products
+├ ○ /admin/settings
+├ ƒ /api/contact
+├ ƒ /api/paystack/initialize
+├ ƒ /api/paystack/verify
+├ ƒ /api/paystack/webhook
+├ ○ /checkout
+├ ○ /checkout/success
+├ ○ /checkout/verify
+├ ○ /collections
+├ ○ /contact
+├ ○ /services
+├ ○ /shop
+├ ƒ /shop/[id]
+└ ○ /terms
+
+
+[info] 
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • Image Optimization
+[info]  • non-static component /api/contact/route
+[info]  • non-static component /api/paystack/initialize/route
+[info]  • non-static component /api/paystack/verify/route
+[info]  • non-static component /api/paystack/webhook/route
+[debug] [2026-02-05T04:51:11.082Z]  • non-static component /shop/[id]/page
+[info]  • and 1 other reasons, use --debug to see more
+[info] 
+[debug] [2026-02-05T04:51:11.146Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:11.147Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:11.147Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites/nifemii-abe [none]
+[debug] [2026-02-05T04:51:12.517Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites/nifemii-abe 200
+[debug] [2026-02-05T04:51:12.518Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/nifemii-abe/sites/nifemii-abe {"name":"projects/nifemii-abe/sites/nifemii-abe","defaultUrl":"https://nifemii-abe.web.app","type":"DEFAULT_SITE"}
+[debug] [2026-02-05T04:51:14.531Z] [web frameworks] effective firebase.json:  {
+  "hosting": [
+    {
+      "source": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "frameworksBackend": {
+        "region": "us-central1"
+      },
+      "site": "nifemii-abe",
+      "rewrites": [
+        {
+          "source": "/**",
+          "function": {
+            "functionId": "ssrnifemiiabe",
+            "region": "us-central1",
+            "pinTag": true
+          }
+        }
+      ],
+      "redirects": [],
+      "headers": [
+        {
+          "source": "/:path*",
+          "headers": [
+            {
+              "key": "X-DNS-Prefetch-Control",
+              "value": "on"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=63072000; includeSubDomains; preload"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "1; mode=block"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "Permissions-Policy",
+              "value": "camera=(), microphone=(), geolocation=(self), interest-cohort=()"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://www.google.com https://apis.google.com https://*.firebaseapp.com https://*.firebase.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://firebasestorage.googleapis.com https://*.google.com https://*.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.com https://*.firebaseapp.com wss://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.paystack.co; frame-src 'self' https://www.google.com https://*.firebaseapp.com https://js.paystack.co; form-action 'self'; base-uri 'self'; object-src 'none'"
+            }
+          ]
+        },
+        {
+          "source": "/_global-error",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/_global-error/layout,_N_T_/_global-error/page,_N_T_/_global-error"
+            }
+          ]
+        },
+        {
+          "source": "/_not-found",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/_not-found/layout,_N_T_/_not-found/page,_N_T_/_not-found"
+            }
+          ]
+        },
+        {
+          "source": "/account/appointments",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/account/layout,_N_T_/account/appointments/layout,_N_T_/account/appointments/page,_N_T_/account/appointments"
+            }
+          ]
+        },
+        {
+          "source": "/about",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/about/layout,_N_T_/about/page,_N_T_/about"
+            }
+          ]
+        },
+        {
+          "source": "/account/measurements",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/account/layout,_N_T_/account/measurements/layout,_N_T_/account/measurements/page,_N_T_/account/measurements"
+            }
+          ]
+        },
+        {
+          "source": "/account/orders/verify",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/account/layout,_N_T_/account/orders/layout,_N_T_/account/orders/verify/layout,_N_T_/account/orders/verify/page,_N_T_/account/orders/verify"
+            }
+          ]
+        },
+        {
+          "source": "/account",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/account/layout,_N_T_/account/page,_N_T_/account"
+            }
+          ]
+        },
+        {
+          "source": "/account/profile",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/account/layout,_N_T_/account/profile/layout,_N_T_/account/profile/page,_N_T_/account/profile"
+            }
+          ]
+        },
+        {
+          "source": "/admin/customers",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/customers/layout,_N_T_/admin/customers/page,_N_T_/admin/customers"
+            }
+          ]
+        },
+        {
+          "source": "/account/orders",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/account/layout,_N_T_/account/orders/layout,_N_T_/account/orders/page,_N_T_/account/orders"
+            }
+          ]
+        },
+        {
+          "source": "/admin/appointments",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/appointments/layout,_N_T_/admin/appointments/page,_N_T_/admin/appointments"
+            }
+          ]
+        },
+        {
+          "source": "/admin/finance",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/finance/layout,_N_T_/admin/finance/page,_N_T_/admin/finance"
+            }
+          ]
+        },
+        {
+          "source": "/account/login",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/account/layout,_N_T_/account/login/layout,_N_T_/account/login/page,_N_T_/account/login"
+            }
+          ]
+        },
+        {
+          "source": "/admin/images",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/images/layout,_N_T_/admin/images/page,_N_T_/admin/images"
+            }
+          ]
+        },
+        {
+          "source": "/admin/login",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/login/layout,_N_T_/admin/login/page,_N_T_/admin/login"
+            }
+          ]
+        },
+        {
+          "source": "/admin/messages",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/messages/layout,_N_T_/admin/messages/page,_N_T_/admin/messages"
+            }
+          ]
+        },
+        {
+          "source": "/admin/orders",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/orders/layout,_N_T_/admin/orders/page,_N_T_/admin/orders"
+            }
+          ]
+        },
+        {
+          "source": "/admin/orders/new",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/orders/layout,_N_T_/admin/orders/new/layout,_N_T_/admin/orders/new/page,_N_T_/admin/orders/new"
+            }
+          ]
+        },
+        {
+          "source": "/admin",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/page,_N_T_/admin"
+            }
+          ]
+        },
+        {
+          "source": "/admin/products",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/products/layout,_N_T_/admin/products/page,_N_T_/admin/products"
+            }
+          ]
+        },
+        {
+          "source": "/admin/settings",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/settings/layout,_N_T_/admin/settings/page,_N_T_/admin/settings"
+            }
+          ]
+        },
+        {
+          "source": "/checkout",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/checkout/layout,_N_T_/checkout/page,_N_T_/checkout"
+            }
+          ]
+        },
+        {
+          "source": "/checkout/verify",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/checkout/layout,_N_T_/checkout/verify/layout,_N_T_/checkout/verify/page,_N_T_/checkout/verify"
+            }
+          ]
+        },
+        {
+          "source": "/collections",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/collections/layout,_N_T_/collections/page,_N_T_/collections"
+            }
+          ]
+        },
+        {
+          "source": "/favicon.ico",
+          "headers": [
+            {
+              "key": "cache-control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "content-type",
+              "value": "image/x-icon"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/favicon.ico/layout,_N_T_/favicon.ico/route,_N_T_/favicon.ico"
+            }
+          ]
+        },
+        {
+          "source": "/services",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/services/layout,_N_T_/services/page,_N_T_/services"
+            }
+          ]
+        },
+        {
+          "source": "/shop",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/shop/layout,_N_T_/shop/page,_N_T_/shop"
+            }
+          ]
+        },
+        {
+          "source": "/contact",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/contact/layout,_N_T_/contact/page,_N_T_/contact"
+            }
+          ]
+        },
+        {
+          "source": "/checkout/success",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/checkout/layout,_N_T_/checkout/success/layout,_N_T_/checkout/success/page,_N_T_/checkout/success"
+            }
+          ]
+        },
+        {
+          "source": "/terms",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/terms/layout,_N_T_/terms/page,_N_T_/terms"
+            }
+          ]
+        },
+        {
+          "source": "/**/*.[jt]s",
+          "headers": [
+            {
+              "key": "Set-Cookie",
+              "value": "__FIREBASE_DEFAULTS__=eyJjb25maWciOnsicHJvamVjdElkIjoibmlmZW1paS1hYmUiLCJhcHBJZCI6IjE6NDkwOTY1NjU5MzE1OndlYjozM2QyN2Y3NDU1OWE0ZDExMzBjYWM2Iiwic3RvcmFnZUJ1Y2tldCI6Im5pZmVtaWktYWJlLmZpcmViYXNlc3RvcmFnZS5hcHAiLCJhcGlLZXkiOiJBSXphU3lBSmotZnh5STdOYXJISWczQWw3b2FXckEwUzFnM2ZibmsiLCJhdXRoRG9tYWluIjoibmlmZW1paS1hYmUuZmlyZWJhc2VhcHAuY29tIiwibWVzc2FnaW5nU2VuZGVySWQiOiI0OTA5NjU2NTkzMTUiLCJtZWFzdXJlbWVudElkIjoiRy02UDRYMTE1OFlLIiwicHJvamVjdE51bWJlciI6IjQ5MDk2NTY1OTMxNSIsInZlcnNpb24iOiIyIn0sIl9hdXRoVG9rZW5TeW5jVVJMIjoiL19fc2Vzc2lvbiJ9; SameSite=Strict; Expires=2027-12-31T15:31:14.531Z; Path=/;"
+            }
+          ]
+        }
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "public": ".firebase/nifemii-abe/hosting",
+      "webFramework": "next_ssr"
+    }
+  ],
+  "functions": [
+    {
+      "source": ".firebase/nifemii-abe/functions",
+      "codebase": "firebase-frameworks-nifemii-abe"
+    }
+  ]
+}
+[debug] [2026-02-05T04:51:14.531Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-05T04:51:14.532Z] > authorizing via signed-in user (atemiehartkelvin@gmail.com)
+[debug] [2026-02-05T04:51:14.532Z] [iam] checking project nifemii-abe for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-02-05T04:51:14.532Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:14.532Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:14.532Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions [none]
+[debug] [2026-02-05T04:51:14.532Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions x-goog-quota-user=projects/nifemii-abe
+[debug] [2026-02-05T04:51:14.532Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-02-05T04:51:15.792Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions 200
+[debug] [2026-02-05T04:51:15.792Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[info] 
+[info] === Deploying to 'nifemii-abe'...
+[info] 
+[info] i  deploying functions, firestore, hosting 
+[debug] [2026-02-05T04:51:15.796Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:15.796Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:15.797Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe [none]
+[debug] [2026-02-05T04:51:16.130Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe 200
+[debug] [2026-02-05T04:51:16.130Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe {"projectNumber":"490965659315","projectId":"nifemii-abe","lifecycleState":"ACTIVE","name":"nifemii-abe","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-01-22T15:50:36.022220Z"}
+[info] i  functions: preparing codebase firebase-frameworks-nifemii-abe for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-02-05T04:51:16.133Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:16.133Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:16.133Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nifemii-abe/adminSdkConfig [none]
+[debug] [2026-02-05T04:51:16.674Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nifemii-abe/adminSdkConfig 200
+[debug] [2026-02-05T04:51:16.674Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nifemii-abe/adminSdkConfig {"projectId":"nifemii-abe","storageBucket":"nifemii-abe.firebasestorage.app"}
+[debug] [2026-02-05T04:51:16.675Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:16.675Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:16.675Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/nifemii-abe/configs [none]
+[debug] [2026-02-05T04:51:18.355Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/nifemii-abe/configs 200
+[debug] [2026-02-05T04:51:18.355Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/nifemii-abe/configs {}
+[debug] [2026-02-05T04:51:18.357Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2026-02-05T04:51:18.984Z] > [functions] package.json contents: {
+  "name": "nifemii-abe",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "firebase": "^12.8.0",
+    "firebase-admin": "^13.6.0",
+    "next": "16.1.4",
+    "nodemailer": "^7.0.12",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "zod": "^4.3.6",
+    "sharp": "^0.32 || ^0.33",
+    "firebase-frameworks": "^0.11.0",
+    "firebase-functions": "^6.0.1"
+  },
+  "main": "server.js",
+  "engines": {
+    "node": "22"
+  }
+}
+[debug] [2026-02-05T04:51:18.984Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase firebase-frameworks-nifemii-abe to determine what to deploy 
+[debug] [2026-02-05T04:51:18.985Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-02-05T04:51:18.990Z] Found firebase-functions binary at '/Users/kelvinatemie-hart/Documents/Website/nifemii-abe/.firebase/nifemii-abe/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8657
+
+[debug] [2026-02-05T04:51:19.194Z] Got response from /__/functions.yaml {"endpoints":{"ssrnifemiiabe":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"labels":{},"httpsTrigger":{},"entryPoint":"ssrnifemiiabe"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2026-02-05T04:51:23.214Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-05T04:51:23.214Z] > authorizing via signed-in user (atemiehartkelvin@gmail.com)
+[debug] [2026-02-05T04:51:23.214Z] [iam] checking project nifemii-abe for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2026-02-05T04:51:23.214Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:23.214Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:23.215Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions [none]
+[debug] [2026-02-05T04:51:23.215Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions x-goog-quota-user=projects/nifemii-abe
+[debug] [2026-02-05T04:51:23.215Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2026-02-05T04:51:24.524Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions 200
+[debug] [2026-02-05T04:51:24.524Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2026-02-05T04:51:24.525Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:24.525Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:24.525Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/nifemii-abe/instances pageSize=100&pageToken=
+[debug] [2026-02-05T04:51:25.928Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/nifemii-abe/instances 200
+[debug] [2026-02-05T04:51:25.928Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/nifemii-abe/instances {}
+[info] i  functions: Loaded environment variables from .env. 
+[info] i  functions: preparing .firebase/nifemii-abe/functions directory for uploading... 
+[info] i  functions: packaged /Users/kelvinatemie-hart/Documents/Website/nifemii-abe/.firebase/nifemii-abe/functions (339.57 MB) for uploading 
+[debug] [2026-02-05T04:51:34.603Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:34.603Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:34.603Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/nifemii-abe/locations/-/functions [none]
+[debug] [2026-02-05T04:51:35.559Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/nifemii-abe/locations/-/functions 200
+[debug] [2026-02-05T04:51:35.560Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/nifemii-abe/locations/-/functions {}
+[debug] [2026-02-05T04:51:35.560Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:35.560Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:35.562Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/nifemii-abe/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2026-02-05T04:51:36.703Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/nifemii-abe/locations/-/functions 200
+[debug] [2026-02-05T04:51:36.703Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/nifemii-abe/locations/-/functions {"functions":[{"name":"projects/nifemii-abe/locations/us-central1/functions/ssrnifemiiabe","buildConfig":{"build":"projects/490965659315/locations/us-central1/builds/52e6faea-931f-40a6-a0c2-3aeecea9b03d","runtime":"nodejs22","entryPoint":"ssrnifemiiabe","source":{"storageSource":{"bucket":"gcf-v2-sources-490965659315-us-central1","object":"ssrnifemiiabe/function-source.zip","generation":"1770246770884984"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/nifemii-abe/locations/us-central1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-490965659315-us-central1","object":"ssrnifemiiabe/function-source.zip","generation":"1770246770884984"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/nifemii-abe/serviceAccounts/490965659315-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/nifemii-abe/locations/us-central1/services/ssrnifemiiabe","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"nifemii-abe.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"nifemii-abe\",\"appId\":\"1:490965659315:web:33d27f74559a4d1130cac6\",\"storageBucket\":\"nifemii-abe.firebasestorage.app\",\"apiKey\":\"AIzaSyAJj-fxyI7NarHIg3Al7oaWrA0S1g3fbnk\",\"authDomain\":\"nifemii-abe.firebaseapp.com\",\"messagingSenderId\":\"490965659315\",\"measurementId\":\"G-6P4X1158YK\",\"projectNumber\":\"490965659315\",\"version\":\"2\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"nifemii-abe\",\"storageBucket\":\"nifemii-abe.firebasestorage.app\"}","GCLOUD_PROJECT":"nifemii-abe","EVENTARC_CLOUD_EVENT_SOURCE":"projects/nifemii-abe/locations/us-central1/services/ssrnifemiiabe","FUNCTION_TARGET":"ssrnifemiiabe","LOG_EXECUTION_ID":"true"},"maxInstanceCount":20,"ingressSettings":"ALLOW_ALL","uri":"https://ssrnifemiiabe-x4f7f5sr7a-uc.a.run.app","serviceAccountEmail":"490965659315-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrnifemiiabe-00008-des","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2026-02-04T23:16:59.627697528Z","labels":{"deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-nifemii-abe","firebase-functions-hash":"6e7557e1e8df7a5aec4df1ba47d8ec40fd1c3c61"},"environment":"GEN_2","url":"https://us-central1-nifemii-abe.cloudfunctions.net/ssrnifemiiabe","createTime":"2026-02-04T21:12:31.375030391Z","satisfiesPzi":true}]}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2026-02-05T04:51:36.707Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:36.707Z] Checked if tokens are valid: true, expires at: 1770270477571
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2026-02-05T04:51:36.707Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:36.707Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:36.708Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/490965659315/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2026-02-05T04:51:36.708Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1beta1/projects/490965659315/services/pubsub.googleapis.com:generateServiceIdentity x-goog-quota-user=projects/490965659315
+[debug] [2026-02-05T04:51:36.708Z] >>> [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/490965659315/services/pubsub.googleapis.com:generateServiceIdentity {}
+[debug] [2026-02-05T04:51:36.709Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/490965659315/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2026-02-05T04:51:36.709Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1beta1/projects/490965659315/services/eventarc.googleapis.com:generateServiceIdentity x-goog-quota-user=projects/490965659315
+[debug] [2026-02-05T04:51:36.709Z] >>> [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/490965659315/services/eventarc.googleapis.com:generateServiceIdentity {}
+[debug] [2026-02-05T04:51:42.030Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/490965659315/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2026-02-05T04:51:42.031Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/490965659315/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-490965659315@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"108809253519582996797"}}
+[debug] [2026-02-05T04:51:42.031Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/490965659315/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2026-02-05T04:51:42.031Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/490965659315/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-490965659315@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"116861232639886539524"}}
+[debug] [2026-02-05T04:51:42.034Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:42.034Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:42.034Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe [none]
+[debug] [2026-02-05T04:51:43.460Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe 200
+[debug] [2026-02-05T04:51:43.460Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/nifemii-abe {"projectNumber":"490965659315","projectId":"nifemii-abe","lifecycleState":"ACTIVE","name":"nifemii-abe","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-01-22T15:50:36.022220Z"}
+[debug] [2026-02-05T04:51:43.460Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:43.460Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:43.460Z] >>> [apiv2][query] GET https://compute.googleapis.com/compute/v1/projects/490965659315 [none]
+[debug] [2026-02-05T04:51:44.053Z] <<< [apiv2][status] GET https://compute.googleapis.com/compute/v1/projects/490965659315 403
+[debug] [2026-02-05T04:51:44.053Z] <<< [apiv2][body] GET https://compute.googleapis.com/compute/v1/projects/490965659315 {"error":{"code":403,"message":"Compute Engine API has not been used in project 490965659315 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","errors":[{"message":"Compute Engine API has not been used in project 490965659315 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","domain":"usageLimits","reason":"accessNotConfigured","extendedHelp":"https://console.developers.google.com"}],"status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"consumer":"projects/490965659315","service":"compute.googleapis.com","activationUrl":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315","serviceTitle":"Compute Engine API","containerInfo":"490965659315"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Compute Engine API has not been used in project 490965659315 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315"}]}]}}
+[debug] [2026-02-05T04:51:44.054Z] unable to look up default compute service account. Falling back to 490965659315-compute@developer.gserviceaccount.com. Error: {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":403,"message":"Compute Engine API has not been used in project 490965659315 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","errors":[{"message":"Compute Engine API has not been used in project 490965659315 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","domain":"usageLimits","reason":"accessNotConfigured","extendedHelp":"https://console.developers.google.com"}],"status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"consumer":"projects/490965659315","service":"compute.googleapis.com","activationUrl":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315","serviceTitle":"Compute Engine API","containerInfo":"490965659315"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Compute Engine API has not been used in project 490965659315 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315"}]}]}},"response":{"statusCode":403}},"exit":1,"message":"Request to https://compute.googleapis.com/compute/v1/projects/490965659315 had HTTP Error: 403, Compute Engine API has not been used in project 490965659315 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=490965659315 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":403}
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-02-05T04:51:44.056Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:44.056Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:44.056Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/nifemii-abe/databases/(default) [none]
+[debug] [2026-02-05T04:51:45.288Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/nifemii-abe/databases/(default) 200
+[debug] [2026-02-05T04:51:45.289Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/nifemii-abe/databases/(default) {"name":"projects/nifemii-abe/databases/(default)","uid":"cb17dbba-0139-4078-8897-3f8d38ecdc8f","createTime":"2026-01-22T15:54:24.517512Z","updateTime":"2026-01-22T15:54:24.517512Z","locationId":"eur3","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-02-05T03:51:45.264734Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"e","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"II6D3u/GwZIDMM6X6aPjwJID"}
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-02-05T04:51:45.292Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:45.292Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:45.292Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/nifemii-abe:test [none]
+[debug] [2026-02-05T04:51:45.292Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/nifemii-abe:test [omitted]
+[debug] [2026-02-05T04:51:46.591Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/nifemii-abe:test 200
+[debug] [2026-02-05T04:51:46.591Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/nifemii-abe:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-02-05T04:51:46.594Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:46.594Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:46.594Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nifemii-abe/versions [none]
+[debug] [2026-02-05T04:51:46.594Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nifemii-abe/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2026-02-05T04:51:48.163Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nifemii-abe/versions 200
+[debug] [2026-02-05T04:51:48.164Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nifemii-abe/versions {"name":"projects/490965659315/sites/nifemii-abe/versions/75b5f6134d32e60d","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2026-02-05T04:51:48.165Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:48.165Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:48.165Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/nifemii-abe/billingInfo [none]
+[debug] [2026-02-05T04:51:49.477Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/nifemii-abe/billingInfo 200
+[debug] [2026-02-05T04:51:49.478Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/nifemii-abe/billingInfo {"name":"projects/nifemii-abe/billingInfo","projectId":"nifemii-abe","billingAccountName":"billingAccounts/01080D-71590C-E219C7","billingEnabled":true}
+[debug] [2026-02-05T04:51:49.481Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:49.481Z] Checked if tokens are valid: true, expires at: 1770270477571
+[debug] [2026-02-05T04:51:49.481Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/nifemii-abe/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2026-02-05T04:51:50.543Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/nifemii-abe/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2026-02-05T04:51:50.543Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/nifemii-abe/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-490965659315.us-central1.cloudfunctions.appspot.com/be3b8a7e-5794-4253-adbe-ab3405ce9f2d.zip?GoogleAccessId=service-490965659315@gcf-admin-robot.iam.gserviceaccount.com&Expires=1770268910&Signature=dxrmnLGz8YBG%2FhvsA93F5P4AQF1zen%2BRQNUzyO9mFBT4XV3cC0eQbrJboSyfRbTCq8evLo9gVqRKpUfnbOBbKtqgySu2v12RCORTMgylhPyG8qzl2Okj22a5nQcsPm8ElcXZdTX6se1vdgkHHIfYqiBLM7yh8vUYOFeZ9hcouEI9bASdJeU0VwDEKAlLwxjYn6nW9L4%2F8qO1VprTY3hb6VNwjTTPy%2FqmrKSADK1VRPVQg%2Fm2rEHGaDOag5CgaNG6NsIf%2FEEHOq48wRfq8piHgtpKjbLiOy%2Fvwve8Y7n9tfXdFz0sU8gmt4H8KAdPfp7uQT0QxscNImCtnBdIaXJS%2Bw%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-490965659315.us-central1.cloudfunctions.appspot.com","object":"be3b8a7e-5794-4253-adbe-ab3405ce9f2d.zip"}}
+[debug] [2026-02-05T04:51:50.544Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-490965659315.us-central1.cloudfunctions.appspot.com/be3b8a7e-5794-4253-adbe-ab3405ce9f2d.zip GoogleAccessId=service-490965659315%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1770268910&Signature=dxrmnLGz8YBG%2FhvsA93F5P4AQF1zen%2BRQNUzyO9mFBT4XV3cC0eQbrJboSyfRbTCq8evLo9gVqRKpUfnbOBbKtqgySu2v12RCORTMgylhPyG8qzl2Okj22a5nQcsPm8ElcXZdTX6se1vdgkHHIfYqiBLM7yh8vUYOFeZ9hcouEI9bASdJeU0VwDEKAlLwxjYn6nW9L4%2F8qO1VprTY3hb6VNwjTTPy%2FqmrKSADK1VRPVQg%2Fm2rEHGaDOag5CgaNG6NsIf%2FEEHOq48wRfq8piHgtpKjbLiOy%2Fvwve8Y7n9tfXdFz0sU8gmt4H8KAdPfp7uQT0QxscNImCtnBdIaXJS%2Bw%3D%3D
+[debug] [2026-02-05T04:51:50.544Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-490965659315.us-central1.cloudfunctions.appspot.com/be3b8a7e-5794-4253-adbe-ab3405ce9f2d.zip [stream]
